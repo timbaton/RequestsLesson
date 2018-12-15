@@ -8,18 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		7CF8681A21AC0F2100BE390A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8681921AC0F2100BE390A /* AppDelegate.swift */; };
-		7CF8681C21AC0F2100BE390A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8681B21AC0F2100BE390A /* LoginViewController.swift */; };
+		7CF8681C21AC0F2100BE390A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8681B21AC0F2100BE390A /* LoginController.swift */; };
 		7CF8681F21AC0F2100BE390A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8681D21AC0F2100BE390A /* Main.storyboard */; };
 		7CF8682121AC0F2200BE390A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8682021AC0F2200BE390A /* Assets.xcassets */; };
+		CE1B4A2021C54AE100B1B2B7 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1B4A1F21C54AE100B1B2B7 /* ApiService.swift */; };
+		CE7123E321C55E7D00016626 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7123E221C55E7D00016626 /* ProfileModel.swift */; };
+		CE93E03521BF079600D29309 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE93E03421BF079600D29309 /* WebKit.framework */; };
+		CEA6618B21C418BA00111275 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6618A21C418BA00111275 /* AuthService.swift */; };
+		CEA6618D21C41A2500111275 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6618C21C41A2500111275 /* DataManager.swift */; };
+		CEA6618F21C41A5300111275 /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6618E21C41A5300111275 /* DataManagerProtocol.swift */; };
+		CEC64D1021C518C000AFAAC1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC64D0F21C518C000AFAAC1 /* MainTabBarController.swift */; };
+		CEC64D1221C51BA400AFAAC1 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC64D1121C51BA400AFAAC1 /* ProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7CF8681621AC0F2100BE390A /* SwiftRequests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRequests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF8681921AC0F2100BE390A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7CF8681B21AC0F2100BE390A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7CF8681B21AC0F2100BE390A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		7CF8681E21AC0F2100BE390A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CF8682021AC0F2200BE390A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CF8682521AC0F2200BE390A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE1B4A1F21C54AE100B1B2B7 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		CE7123E221C55E7D00016626 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		CE93E03421BF079600D29309 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		CEA6618A21C418BA00111275 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		CEA6618C21C41A2500111275 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		CEA6618E21C41A5300111275 /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
+		CEC64D0F21C518C000AFAAC1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CEC64D1121C51BA400AFAAC1 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE93E03521BF079600D29309 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +55,7 @@
 			children = (
 				7CF8681821AC0F2100BE390A /* SwiftRequests */,
 				7CF8681721AC0F2100BE390A /* Products */,
+				CE93E03321BF079600D29309 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,27 +70,31 @@
 		7CF8681821AC0F2100BE390A /* SwiftRequests */ = {
 			isa = PBXGroup;
 			children = (
-				7CF8682521AC0F2200BE390A /* Info.plist */,
-				CE6F64D721BE891900972D42 /* ProjectSetting */,
-				CE6F64D621BE88CB00972D42 /* Controller */,
+				CE80A95721C42758002095F0 /* Service */,
 				CE6F64D521BE88C400972D42 /* Model */,
-				CE6F64D421BE88B200972D42 /* UI */,
+				CE6F64D421BE88B200972D42 /* View */,
+				CE6F64D621BE88CB00972D42 /* Controller */,
+				7CF8681921AC0F2100BE390A /* AppDelegate.swift */,
+				7CF8682021AC0F2200BE390A /* Assets.xcassets */,
+				7CF8682521AC0F2200BE390A /* Info.plist */,
 			);
 			path = SwiftRequests;
 			sourceTree = "<group>";
 		};
-		CE6F64D421BE88B200972D42 /* UI */ = {
+		CE6F64D421BE88B200972D42 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				7CF8681D21AC0F2100BE390A /* Main.storyboard */,
-				CE6F64D821BE892E00972D42 /* login */,
 			);
-			path = UI;
+			path = View;
 			sourceTree = "<group>";
 		};
 		CE6F64D521BE88C400972D42 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CEA6618C21C41A2500111275 /* DataManager.swift */,
+				CEA6618E21C41A5300111275 /* DataManagerProtocol.swift */,
+				CE7123E221C55E7D00016626 /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -80,25 +102,28 @@
 		CE6F64D621BE88CB00972D42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7CF8681B21AC0F2100BE390A /* LoginController.swift */,
+				CEC64D0F21C518C000AFAAC1 /* MainTabBarController.swift */,
+				CEC64D1121C51BA400AFAAC1 /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		CE6F64D721BE891900972D42 /* ProjectSetting */ = {
+		CE80A95721C42758002095F0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				7CF8681921AC0F2100BE390A /* AppDelegate.swift */,
-				7CF8682021AC0F2200BE390A /* Assets.xcassets */,
+				CEA6618A21C418BA00111275 /* AuthService.swift */,
+				CE1B4A1F21C54AE100B1B2B7 /* ApiService.swift */,
 			);
-			path = ProjectSetting;
+			path = Service;
 			sourceTree = "<group>";
 		};
-		CE6F64D821BE892E00972D42 /* login */ = {
+		CE93E03321BF079600D29309 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7CF8681B21AC0F2100BE390A /* LoginViewController.swift */,
+				CE93E03421BF079600D29309 /* WebKit.framework */,
 			);
-			path = login;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,8 +196,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CF8681C21AC0F2100BE390A /* LoginViewController.swift in Sources */,
+				CEC64D1221C51BA400AFAAC1 /* ProfileController.swift in Sources */,
+				CEA6618B21C418BA00111275 /* AuthService.swift in Sources */,
+				CEA6618D21C41A2500111275 /* DataManager.swift in Sources */,
+				CEC64D1021C518C000AFAAC1 /* MainTabBarController.swift in Sources */,
+				7CF8681C21AC0F2100BE390A /* LoginController.swift in Sources */,
 				7CF8681A21AC0F2100BE390A /* AppDelegate.swift in Sources */,
+				CE1B4A2021C54AE100B1B2B7 /* ApiService.swift in Sources */,
+				CE7123E321C55E7D00016626 /* ProfileModel.swift in Sources */,
+				CEA6618F21C41A5300111275 /* DataManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
