@@ -40,15 +40,20 @@ class HistoriesController: UIViewController, UITextViewDelegate, UITableViewData
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        // Configure the cell...
+        
+            // Configure the cell...
         let myCell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
-        myCell.configureCell(post: posts[indexPath.row])
+        if posts[indexPath.row].text != "nil"{
+            myCell.configureCell(post: posts[indexPath.row])
+        } else {
+            myCell.isHidden = true
+        }
         return myCell
     }
     
     func downloadPosts() {
         let profileURL = ApiService.sharedInstance.getPostsURL()
-        var urlRequest = URLRequest(url: profileURL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
+        let urlRequest = URLRequest(url: profileURL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
         
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             print("\(String(describing: response))")
@@ -57,8 +62,6 @@ class HistoriesController: UIViewController, UITextViewDelegate, UITableViewData
             }
             do{
                 if let data = data {
-                    //                self.dataManager.saveUserProfile(data: data, key: self.keyProfile)
-                    
                     if let loadedPostsString = String.init(data: data, encoding: String.Encoding.utf8) {
                         print("posts = \(loadedPostsString)")
                     }
@@ -66,7 +69,6 @@ class HistoriesController: UIViewController, UITextViewDelegate, UITableViewData
                     let decoder = JSONDecoder()
                     let downloadPosts = try! decoder.decode(PostModel.self, from: data)
                     self.posts = downloadPosts.response.items
-                    print(self.posts[0].date)
                     
                      DispatchQueue.main.async {
                         self.postsTable.reloadData()

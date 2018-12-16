@@ -38,7 +38,7 @@ class ProfileController: UIViewController {
             print(loadedPerson.response.first_name)
             profile = loadedPerson
         }
-        print("\(profile)")
+        print(profile)
 
         DispatchQueue.main.async {
             self.tvBDay.text = profile?.response.bdate
@@ -66,8 +66,8 @@ class ProfileController: UIViewController {
         let profileURL = apiService.getProfileURL()
         var urlRequest = URLRequest(url: profileURL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
         
-        let session = URLSession.shared
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             print("\(String(describing: response))")
             if let error = error{
                 print("\(error)")

@@ -35,12 +35,11 @@ struct Attachment: Codable {
 
 struct Photo: Codable {
     var id: Int
-    var link: URL?
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case link = "photo_604"
-    }
+    var sizes: [Size]
+}
+
+struct Size: Codable {
+    var url: String
 }
 
 struct Comments: Codable {

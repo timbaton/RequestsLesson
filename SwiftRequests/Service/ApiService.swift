@@ -21,13 +21,20 @@ class ApiService {
     
     private var profileMethod = "account.getProfileInfo"
     private var postsMethod = "newsfeed.get"
+    private var postsCount = "10"
+    private var postsFilter = "post"
+    
+    private var keyFilters = "filters"
+    private var keyAccessToken = "access_token"
+    private var keyVersion = "v"
+    private var keyCount = "count"
     
     public func getProfileURL() -> URL{
         return getURL(method: profileMethod, count: nil, philter: nil)
     }
     
     public func getPostsURL() -> URL{
-        return getURL(method: postsMethod, count: "3", philter: "post")
+        return getURL(method: postsMethod, count: postsCount, philter: postsFilter)
     }
     
     private func getURL(method: String, count: String?, philter: String?) -> URL{
@@ -35,9 +42,9 @@ class ApiService {
         var queryItems: [URLQueryItem]?
         
         if count != nil{
-            queryItems = [NSURLQueryItem(name: "filters", value: philter), NSURLQueryItem(name: "count", value: count), NSURLQueryItem(name: "access_token", value: accessToken), NSURLQueryItem(name: "v", value: apiVersion)] as [URLQueryItem]
+            queryItems = [NSURLQueryItem(name: keyFilters, value: philter), NSURLQueryItem(name: keyCount, value: count), NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
         } else{
-            queryItems = [NSURLQueryItem(name: "access_token", value: accessToken), NSURLQueryItem(name: "v", value: apiVersion)] as [URLQueryItem]
+            queryItems = [NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
         }
         
         let urlComps = NSURLComponents(string: baseURL + method)!

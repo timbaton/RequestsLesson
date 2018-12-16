@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+class RequestManager {
+    
+    static let sharedInstance = RequestManager()
+    
+    
+    func getImage(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+}

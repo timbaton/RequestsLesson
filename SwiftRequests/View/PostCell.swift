@@ -12,6 +12,7 @@ class PostCell: UITableViewCell {
 
 
     @IBOutlet weak var tvText: UILabel!
+    @IBOutlet weak var ivImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +27,20 @@ class PostCell: UITableViewCell {
     
     func configureCell(post: Post) {
         tvText.text = post.text
+        
+        ivImage.setImageFromURl(ImageUrl: post.attachments?[0].photo?.sizes[0].url)
     }
+}
 
+extension UIImageView{
+    
+    func setImageFromURl(ImageUrl: String?){
+        if ImageUrl != nil {
+            if let url = NSURL(string: ImageUrl!) {
+                if let imagedata = NSData(contentsOf: url as URL) {
+                    self.image = UIImage(data: imagedata as Data)
+                }
+            }
+        }
+    }
 }
