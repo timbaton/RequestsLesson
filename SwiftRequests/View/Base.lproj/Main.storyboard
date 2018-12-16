@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -123,35 +124,6 @@
             </objects>
             <point key="canvasLocation" x="1636" y="497.29064039408871"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="MPZ-Kh-syD">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="271-KP-E3m" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="qTY-yN-FoN" customClass="HistoriesController" customModule="SwiftRequests" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ndn-s5-jox">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="j7n-cF-en9">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j7n-cF-en9" id="6OC-1k-SfE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="qTY-yN-FoN" id="x4I-xN-he7"/>
-                            <outlet property="delegate" destination="qTY-yN-FoN" id="rDZ-hd-e6I"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="ugL-C8-TAP"/>
-                </tableViewController>
-            </objects>
-            <point key="canvasLocation" x="1636" y="-170"/>
-        </scene>
         <!--Main Screen Controller-->
         <scene sceneID="N0U-M8-An0">
             <objects>
@@ -163,12 +135,74 @@
                     </tabBar>
                     <connections>
                         <segue destination="3f2-HC-TLw" kind="relationship" relationship="viewControllers" id="jn3-dD-cOq"/>
-                        <segue destination="qTY-yN-FoN" kind="relationship" relationship="viewControllers" id="bJn-h7-paA"/>
+                        <segue destination="61J-yh-NAE" kind="relationship" relationship="viewControllers" id="woS-hX-RW5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d21-8s-DDC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="685" y="172"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="sVb-22-ob6">
+            <objects>
+                <viewController id="61J-yh-NAE" customClass="HistoriesController" customModule="SwiftRequests" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fIV-wb-V46">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m5v-6R-fLR">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="241" id="7R4-Gw-yAl" customClass="PostCell" customModule="SwiftRequests" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="241"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7R4-Gw-yAl" id="XSh-XF-DMA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="240.66666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4N0-PO-0YZ">
+                                                    <rect key="frame" x="15" y="11" width="345" height="219"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4N0-PO-0YZ" firstAttribute="top" secondItem="XSh-XF-DMA" secondAttribute="topMargin" id="4JB-sc-0Mj"/>
+                                                <constraint firstItem="4N0-PO-0YZ" firstAttribute="leading" secondItem="XSh-XF-DMA" secondAttribute="leadingMargin" id="OWi-0h-nBJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="4N0-PO-0YZ" secondAttribute="trailing" id="idV-mf-Ivf"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="4N0-PO-0YZ" secondAttribute="bottom" id="wKm-tA-Xhr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tvText" destination="4N0-PO-0YZ" id="nX2-LO-yOM"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="61J-yh-NAE" id="ZTD-mw-C1s"/>
+                                    <outlet property="delegate" destination="61J-yh-NAE" id="1uu-FN-pko"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GJ2-x6-Dkt" firstAttribute="trailing" secondItem="m5v-6R-fLR" secondAttribute="trailing" id="dAv-cH-GTb"/>
+                            <constraint firstItem="GJ2-x6-Dkt" firstAttribute="bottom" secondItem="m5v-6R-fLR" secondAttribute="bottom" id="gW4-vP-dLx"/>
+                            <constraint firstItem="m5v-6R-fLR" firstAttribute="leading" secondItem="GJ2-x6-Dkt" secondAttribute="leading" id="heJ-dn-iBi"/>
+                            <constraint firstItem="m5v-6R-fLR" firstAttribute="top" secondItem="GJ2-x6-Dkt" secondAttribute="top" id="lgw-uu-c95"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GJ2-x6-Dkt"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ueT-lG-o1d"/>
+                    <connections>
+                        <outlet property="postsTable" destination="m5v-6R-fLR" id="ZYM-tP-0fz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cgv-Fe-SR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1746.4000000000001" y="-185.46798029556652"/>
         </scene>
     </scenes>
 </document>

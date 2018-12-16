@@ -10,6 +10,9 @@ import UIKit
 
 class PostCell: UITableViewCell {
 
+
+    @IBOutlet weak var tvText: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +22,10 @@ class PostCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configureCell(post: Post) {
+        tvText.text = post.text
     }
 
 }

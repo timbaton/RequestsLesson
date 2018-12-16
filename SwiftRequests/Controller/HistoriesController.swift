@@ -8,15 +8,20 @@
 
 import UIKit
 
-class HistoriesController: UITableViewController {
+
+class HistoriesController: UIViewController, UITextViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var postsTable: UITableView!
+    
     var apiService: ApiService!
     var dataManager: DataManager!
     var keyProfile = "key_profile"
-    private var posts: PostModel? = nil
+    private var posts = [Post]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        postsTable.estimatedRowHeight = 100
         downloadPosts()
     }
 
@@ -27,23 +32,18 @@ class HistoriesController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return posts.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         // Configure the cell...
-
-        return cell
+        let myCell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
+        myCell.configureCell(post: posts[indexPath.row])
+        return myCell
     }
     
     func downloadPosts() {
@@ -65,9 +65,12 @@ class HistoriesController: UITableViewController {
                     
                     let decoder = JSONDecoder()
                     let downloadPosts = try! decoder.decode(PostModel.self, from: data)
-                    self.posts = downloadPosts
-                    print(self.posts?.response.items[0].date)
-           
+                    self.posts = downloadPosts.response.items
+                    print(self.posts[0].date)
+                    
+                     DispatchQueue.main.async {
+                        self.postsTable.reloadData()
+                    }
                 }
             }
         }

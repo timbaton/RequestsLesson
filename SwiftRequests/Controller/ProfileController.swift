@@ -38,13 +38,13 @@ class ProfileController: UIViewController {
             print(loadedPerson.response.first_name)
             profile = loadedPerson
         }
-        print(profile)
-        
-        self.tvBDay.text = profile?.response.bdate
-        self.tvName.text = profile?.response.first_name
-        self.tvStatus.text = profile?.response.status
-        
-       
+        print("\(profile)")
+
+        DispatchQueue.main.async {
+            self.tvBDay.text = profile?.response.bdate
+            self.tvName.text = profile?.response.first_name
+            self.tvStatus.text = profile?.response.status
+        }
     }
     
     func getProfileFromDB() -> ProfileModel? {
