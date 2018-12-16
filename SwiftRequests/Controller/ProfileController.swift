@@ -10,40 +10,74 @@ import UIKit
 
 class ProfileController: UIViewController {
     var apiService: ApiService!
+    var dataManager: DataManager!
+    var keyProfile = "key_profile"
+    
+    @IBOutlet weak var tvName: UILabel!
+    @IBOutlet weak var tvStatus: UILabel!
+    @IBOutlet weak var tvBDay: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         apiService = ApiService.sharedInstance
+        dataManager = DataManager.sharedInstance
         
-        let profileURL = apiService.getProfileURL()
-        var urlRequest = URLRequest(url: profileURL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
-        urlRequest.httpMethod = "GET"
-        
-        let session = URLSession.shared
-
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
-            
-            if error != nil{
-                print("\(String(describing: error))")
-                
-            } else if let data = data {
-            let stringData = String.init(data: data, encoding: String.Encoding.utf8)
-                let model = try!
-                    JSONDecoder().decode(ProfileModel.self, from: data)
-
-                print(stringData)
-                print("user = \(String(describing: model))")
-            }
-        }
-        task.resume()
-        
-        
-        // Do any additional setup after loading the view.
+        showProfile()
+//        loadProfile()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showProfile() {
+        let profile = getProfileFromDB()
+        print(profile)
+        DispatchQueue.main.async {
+            self.tvBDay.text = profile?.response.bdate
+            self.tvName.text = profile?.response.first_name
+            self.tvStatus.text = profile?.response.status
+        }
+       
+    }
+    
+    func getProfileFromDB() -> ProfileModel? {
+        var profile: ProfileModel? = nil
+        let savedProfile = UserDefaults.standard.data(forKey: keyProfile)
+        if savedProfile != nil {
+            let decoder = JSONDecoder()
+            if let loadedPerson = try! decoder.decode(ProfileModel?.self, from: savedProfile!) {
+                print(loadedPerson.response.first_name)
+                profile = loadedPerson
+            }
+        } else {
+            loadProfile()
+        }
+        return profile
+    }
+    
+    func loadProfile() {
+        let profileURL = apiService.getProfileURL()
+        var urlRequest = URLRequest(url: profileURL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest) { (data, response, error) in
+            print("\(String(describing: response))")
+            if let error = error{
+                print("\(error)")
+            }
+            if let data = data {
+                self.dataManager.saveUserProfile(data: data, key: self.keyProfile)
+                
+                let decoder = JSONDecoder()
+                if let loadedPerson = String.init(data: data, encoding: String.Encoding.utf8) {
+                    print(loadedPerson)
+                }
+                self.showProfile()
+            }
+        }
+        task.resume()
     }
     
 

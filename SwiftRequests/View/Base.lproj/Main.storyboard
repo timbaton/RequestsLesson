@@ -69,14 +69,59 @@
                     <view key="view" contentMode="scaleToFill" id="Kka-AU-vaf" customClass="Profile">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WHm-eN-IdI">
+                                <rect key="frame" x="0.0" y="88" width="103" height="103"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="103" id="H0O-jw-5XW"/>
+                                    <constraint firstAttribute="height" constant="103" id="jZQ-1A-mZO"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjo-F7-RoX">
+                                <rect key="frame" x="111" y="88" width="248" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLX-cG-oxZ">
+                                <rect key="frame" x="111" y="129" width="248" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbb-dT-4u0">
+                                <rect key="frame" x="111" y="170" width="248" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WHm-eN-IdI" firstAttribute="leading" secondItem="fDh-Z6-Dbz" secondAttribute="leading" id="3AH-hp-2U1"/>
+                            <constraint firstItem="fDh-Z6-Dbz" firstAttribute="trailing" secondItem="wjo-F7-RoX" secondAttribute="trailing" constant="16" id="83L-Xp-Nnk"/>
+                            <constraint firstItem="fDh-Z6-Dbz" firstAttribute="trailing" secondItem="oLX-cG-oxZ" secondAttribute="trailing" constant="16" id="I94-ke-2AD"/>
+                            <constraint firstItem="oLX-cG-oxZ" firstAttribute="leading" secondItem="WHm-eN-IdI" secondAttribute="trailing" constant="8" id="MSi-8v-ueQ"/>
+                            <constraint firstItem="wjo-F7-RoX" firstAttribute="leading" secondItem="WHm-eN-IdI" secondAttribute="trailing" constant="8" id="U85-Co-5Xl"/>
+                            <constraint firstItem="oLX-cG-oxZ" firstAttribute="top" secondItem="wjo-F7-RoX" secondAttribute="bottom" constant="20" id="bFc-OJ-BaY"/>
+                            <constraint firstItem="wjo-F7-RoX" firstAttribute="top" secondItem="WHm-eN-IdI" secondAttribute="top" id="blf-Ud-sJN"/>
+                            <constraint firstItem="Lbb-dT-4u0" firstAttribute="top" secondItem="oLX-cG-oxZ" secondAttribute="bottom" constant="20" id="hxY-v3-DWW"/>
+                            <constraint firstItem="WHm-eN-IdI" firstAttribute="top" secondItem="fDh-Z6-Dbz" secondAttribute="top" id="iul-n6-Oml"/>
+                            <constraint firstItem="fDh-Z6-Dbz" firstAttribute="trailing" secondItem="Lbb-dT-4u0" secondAttribute="trailing" constant="16" id="l4V-Kf-LzB"/>
+                            <constraint firstItem="Lbb-dT-4u0" firstAttribute="leading" secondItem="WHm-eN-IdI" secondAttribute="trailing" constant="8" id="tzg-uf-Rvv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fDh-Z6-Dbz"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="profile" id="tli-fH-68L"/>
+                    <connections>
+                        <outlet property="tvBDay" destination="Lbb-dT-4u0" id="HJ3-ba-QIO"/>
+                        <outlet property="tvName" destination="wjo-F7-RoX" id="3jY-2i-Ivm"/>
+                        <outlet property="tvStatus" destination="oLX-cG-oxZ" id="lmg-eL-0El"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPH-KZ-RXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="498"/>
+            <point key="canvasLocation" x="1636" y="497.29064039408871"/>
         </scene>
         <!--news-->
         <scene sceneID="cR4-rQ-B6V">

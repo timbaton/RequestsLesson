@@ -16,12 +16,19 @@ class DataManager: DataManagerProtocol {
     func saveUserToken(with token: String) {
         UserDefaults.standard.setValue(token, forKey: keyToken)
         UserDefaults.standard.synchronize()
+        print("saved token = \(token)")
     }
     
     func getUserToken() -> String? {
         if let token = UserDefaults.standard.string(forKey: keyToken){
+            print("returned token \(token)")
             return token
         }
+        print("returned token nil")
         return nil
+    }
+    
+    func saveUserProfile(data: Data, key: String) {
+        UserDefaults.standard.set(data, forKey: key)
     }
 }

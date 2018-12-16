@@ -16,5 +16,6 @@ struct ProfileInfo: Codable{
     var first_name: String
     var last_name: String
     var bdate: String
+    var status: String
     var home_town: String
 }
