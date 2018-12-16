@@ -22,8 +22,8 @@ class ProfileController: UIViewController {
         apiService = ApiService.sharedInstance
         dataManager = DataManager.sharedInstance
         
-        showProfile()
-//        loadProfile()
+//        showProfile()
+        loadProfile()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,14 +31,19 @@ class ProfileController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showProfile() {
-        let profile = getProfileFromDB()
-        print(profile)
-        DispatchQueue.main.async {
-            self.tvBDay.text = profile?.response.bdate
-            self.tvName.text = profile?.response.first_name
-            self.tvStatus.text = profile?.response.status
+    func showProfile(data: Data) {
+        var profile: ProfileModel? = nil
+        let decoder = JSONDecoder()
+        if let loadedPerson = try! decoder.decode(ProfileModel?.self, from: data) {
+            print(loadedPerson.response.first_name)
+            profile = loadedPerson
         }
+        print(profile)
+        
+        self.tvBDay.text = profile?.response.bdate
+        self.tvName.text = profile?.response.first_name
+        self.tvStatus.text = profile?.response.status
+        
        
     }
     
@@ -74,7 +79,7 @@ class ProfileController: UIViewController {
                 if let loadedPerson = String.init(data: data, encoding: String.Encoding.utf8) {
                     print(loadedPerson)
                 }
-                self.showProfile()
+                self.showProfile(data: data)
             }
         }
         task.resume()

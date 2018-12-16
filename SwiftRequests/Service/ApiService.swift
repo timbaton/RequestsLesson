@@ -16,7 +16,7 @@ class ApiService {
     
     private var baseURL = "https://api.vk.com/method/"
     private var apiVersion = "5.92"
-    private var accessToken = AuthService.sharedInstance.getUserToken()
+    private var accessToken: String? = nil
     
     private var profileMethod = "/account.getProfileInfo"
     
@@ -25,10 +25,12 @@ class ApiService {
     }
     
     private func getURL(method: String) -> URL{
+        accessToken = AuthService.sharedInstance.getUserToken()
         let queryItems = [NSURLQueryItem(name: "access_token", value: accessToken), NSURLQueryItem(name: "v", value: apiVersion)]
         let urlComps = NSURLComponents(string: baseURL + method)!
         urlComps.queryItems = queryItems as [URLQueryItem]
         let URL = urlComps.url!
+        print("given url \(URL)")
         return URL
     }
     //api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V
