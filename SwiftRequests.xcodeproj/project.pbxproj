@@ -19,6 +19,9 @@
 		CEA6618F21C41A5300111275 /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6618E21C41A5300111275 /* DataManagerProtocol.swift */; };
 		CEC64D1021C518C000AFAAC1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC64D0F21C518C000AFAAC1 /* MainTabBarController.swift */; };
 		CEC64D1221C51BA400AFAAC1 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC64D1121C51BA400AFAAC1 /* ProfileController.swift */; };
+		CEDEC7DE21C67683008B469D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEC7DD21C67683008B469D /* PostCell.swift */; };
+		CEDEC7E221C67743008B469D /* HistoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEC7E121C67743008B469D /* HistoriesController.swift */; };
+		CEDEC7E421C69BB9008B469D /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEC7E321C69BB9008B469D /* PostModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		CEA6618E21C41A5300111275 /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
 		CEC64D0F21C518C000AFAAC1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEC64D1121C51BA400AFAAC1 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		CEDEC7DD21C67683008B469D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		CEDEC7E121C67743008B469D /* HistoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoriesController.swift; sourceTree = "<group>"; };
+		CEDEC7E321C69BB9008B469D /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				7CF8681D21AC0F2100BE390A /* Main.storyboard */,
+				CEDEC7DD21C67683008B469D /* PostCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -95,6 +102,7 @@
 				CEA6618C21C41A2500111275 /* DataManager.swift */,
 				CEA6618E21C41A5300111275 /* DataManagerProtocol.swift */,
 				CE7123E221C55E7D00016626 /* ProfileModel.swift */,
+				CEDEC7E321C69BB9008B469D /* PostModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -102,6 +110,7 @@
 		CE6F64D621BE88CB00972D42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CEDEC7E121C67743008B469D /* HistoriesController.swift */,
 				7CF8681B21AC0F2100BE390A /* LoginController.swift */,
 				CEC64D0F21C518C000AFAAC1 /* MainTabBarController.swift */,
 				CEC64D1121C51BA400AFAAC1 /* ProfileController.swift */,
@@ -197,14 +206,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC64D1221C51BA400AFAAC1 /* ProfileController.swift in Sources */,
+				CEDEC7E421C69BB9008B469D /* PostModel.swift in Sources */,
 				CEA6618B21C418BA00111275 /* AuthService.swift in Sources */,
 				CEA6618D21C41A2500111275 /* DataManager.swift in Sources */,
 				CEC64D1021C518C000AFAAC1 /* MainTabBarController.swift in Sources */,
+				CEDEC7E221C67743008B469D /* HistoriesController.swift in Sources */,
 				7CF8681C21AC0F2100BE390A /* LoginController.swift in Sources */,
 				7CF8681A21AC0F2100BE390A /* AppDelegate.swift in Sources */,
 				CE1B4A2021C54AE100B1B2B7 /* ApiService.swift in Sources */,
 				CE7123E321C55E7D00016626 /* ProfileModel.swift in Sources */,
 				CEA6618F21C41A5300111275 /* DataManagerProtocol.swift in Sources */,
+				CEDEC7DE21C67683008B469D /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

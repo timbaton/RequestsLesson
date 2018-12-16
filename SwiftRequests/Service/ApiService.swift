@@ -8,27 +8,40 @@
 
 import Foundation
 
+//https://api.vk.com/method/newsfeed.get?token_access=e0f7032733ce3c3ef4de19173bf3d7a85ce00b44c32c92c3bcc8a658062ac677181c11e8c2e75b60d2e6f&v=5.92
 
 class ApiService {
     static let sharedInstance = ApiService()
     
-    var login_url = URL(string: "https://oauth.vk.com/authorize?client_id=6770852&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.52")
+    var login_url = URL(string: "https://oauth.vk.com/authorize?client_id=6770852&display=page&scope=wall,friends,docs&response_type=token&v=5.52")
     
     private var baseURL = "https://api.vk.com/method/"
     private var apiVersion = "5.92"
     private var accessToken: String? = nil
     
-    private var profileMethod = "/account.getProfileInfo"
+    private var profileMethod = "account.getProfileInfo"
+    private var postsMethod = "newsfeed.get"
     
     public func getProfileURL() -> URL{
-        return getURL(method: profileMethod)
+        return getURL(method: profileMethod, count: nil, philter: nil)
     }
     
-    private func getURL(method: String) -> URL{
+    public func getPostsURL() -> URL{
+        return getURL(method: postsMethod, count: "3", philter: "post")
+    }
+    
+    private func getURL(method: String, count: String?, philter: String?) -> URL{
         accessToken = AuthService.sharedInstance.getUserToken()
-        let queryItems = [NSURLQueryItem(name: "access_token", value: accessToken), NSURLQueryItem(name: "v", value: apiVersion)]
+        var queryItems: [URLQueryItem]?
+        
+        if count != nil{
+            queryItems = [NSURLQueryItem(name: "filters", value: philter), NSURLQueryItem(name: "count", value: count), NSURLQueryItem(name: "access_token", value: accessToken), NSURLQueryItem(name: "v", value: apiVersion)] as [URLQueryItem]
+        } else{
+            queryItems = [NSURLQueryItem(name: "access_token", value: accessToken), NSURLQueryItem(name: "v", value: apiVersion)] as [URLQueryItem]
+        }
+        
         let urlComps = NSURLComponents(string: baseURL + method)!
-        urlComps.queryItems = queryItems as [URLQueryItem]
+        urlComps.queryItems = queryItems
         let URL = urlComps.url!
         print("given url \(URL)")
         return URL
