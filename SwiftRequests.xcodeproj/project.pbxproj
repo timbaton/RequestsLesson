@@ -18,6 +18,7 @@
 		CEA6618D21C41A2500111275 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6618C21C41A2500111275 /* DataManager.swift */; };
 		CEA6618F21C41A5300111275 /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6618E21C41A5300111275 /* DataManagerProtocol.swift */; };
 		CEAE194421C6D89100C9BED1 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE194321C6D89100C9BED1 /* RequestManager.swift */; };
+		CEC3A8A121C7BE78007FFA4E /* RequestManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC3A8A021C7BE78007FFA4E /* RequestManagerProtocol.swift */; };
 		CEC64D1021C518C000AFAAC1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC64D0F21C518C000AFAAC1 /* MainTabBarController.swift */; };
 		CEC64D1221C51BA400AFAAC1 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC64D1121C51BA400AFAAC1 /* ProfileController.swift */; };
 		CEDEC7DE21C67683008B469D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEC7DD21C67683008B469D /* PostCell.swift */; };
@@ -39,6 +40,7 @@
 		CEA6618C21C41A2500111275 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		CEA6618E21C41A5300111275 /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
 		CEAE194321C6D89100C9BED1 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		CEC3A8A021C7BE78007FFA4E /* RequestManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerProtocol.swift; sourceTree = "<group>"; };
 		CEC64D0F21C518C000AFAAC1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEC64D1121C51BA400AFAAC1 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		CEDEC7DD21C67683008B469D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				CEA6618A21C418BA00111275 /* AuthService.swift */,
 				CE1B4A1F21C54AE100B1B2B7 /* ApiService.swift */,
 				CEAE194321C6D89100C9BED1 /* RequestManager.swift */,
+				CEC3A8A021C7BE78007FFA4E /* RequestManagerProtocol.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				CEAE194421C6D89100C9BED1 /* RequestManager.swift in Sources */,
 				CEA6618B21C418BA00111275 /* AuthService.swift in Sources */,
 				CEA6618D21C41A2500111275 /* DataManager.swift in Sources */,
+				CEC3A8A121C7BE78007FFA4E /* RequestManagerProtocol.swift in Sources */,
 				CEC64D1021C518C000AFAAC1 /* MainTabBarController.swift in Sources */,
 				CEDEC7E221C67743008B469D /* HistoriesController.swift in Sources */,
 				7CF8681C21AC0F2100BE390A /* LoginController.swift in Sources */,

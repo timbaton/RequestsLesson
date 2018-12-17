@@ -206,6 +206,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="xiW-9b-Key"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="like"/>
+                                                    <connections>
+                                                        <action selector="btnLike:" destination="7R4-Gw-yAl" eventType="touchUpInside" id="qZh-cQ-9IP"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ei7-Jb-ahe">
                                                     <rect key="frame" x="123" y="317" width="30" height="30"/>

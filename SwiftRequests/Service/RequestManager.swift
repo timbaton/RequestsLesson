@@ -7,13 +7,27 @@
 //
 
 import Foundation
+import UIKit
 
-class RequestManager {
+class RequestManager: RequestManagerProtocol {
+    public static var sharedInstance = RequestManager()
     
-    static let sharedInstance = RequestManager()
-    
-    
-    func getImage(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    func downloadFileFromURL(url: URLRequest, completionHandler: @escaping (Bool) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            print("\(String(describing: response))")
+            if let error = error{
+                completionHandler(false)
+            }
+            if let data = data {
+                DataManager.sharedInstance.saveUserProfile(data: data)
+                
+                let decoder = JSONDecoder()
+                if let loadedPerson = String.init(data: data, encoding: String.Encoding.utf8) {
+                    print(loadedPerson)
+                }
+            }
+            completionHandler(true)
+        }
+        task.resume()
     }
 }

@@ -22,7 +22,7 @@ class ProfileController: UIViewController {
         apiService = ApiService.sharedInstance
         dataManager = DataManager.sharedInstance
         
-//        showProfile()
+        
         loadProfile()
     }
 
@@ -31,20 +31,15 @@ class ProfileController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showProfile(data: Data) {
-        var profile: ProfileModel? = nil
-        let decoder = JSONDecoder()
-        if let loadedPerson = try! decoder.decode(ProfileModel?.self, from: data) {
-            print(loadedPerson.response.first_name)
-            profile = loadedPerson
-        }
-        print(profile)
+    func showProfile() {
+        var profile: ProfileModel? = DataManager.sharedInstance.getUserProfile()
+        
 
-        DispatchQueue.main.async {
-            self.tvBDay.text = profile?.response.bdate
-            self.tvName.text = profile?.response.first_name
-            self.tvStatus.text = profile?.response.status
-        }
+        
+        self.tvBDay.text = profile?.response.bdate
+        self.tvName.text = profile?.response.first_name
+        self.tvStatus.text = profile?.response.status
+        
     }
     
     func getProfileFromDB() -> ProfileModel? {
@@ -64,25 +59,14 @@ class ProfileController: UIViewController {
     
     func loadProfile() {
         let profileURL = apiService.getProfileURL()
-        var urlRequest = URLRequest(url: profileURL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
+        let urlRequest = URLRequest(url: profileURL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
         
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            print("\(String(describing: response))")
-            if let error = error{
-                print("\(error)")
+        let a = RequestManager.sharedInstance as! RequestManagerProtocol
+        a.downloadFileFromURL(url: urlRequest, completionHandler: { (success) in
+            if success{
+                self.showProfile()
             }
-            if let data = data {
-                self.dataManager.saveUserProfile(data: data, key: self.keyProfile)
-                
-                let decoder = JSONDecoder()
-                if let loadedPerson = String.init(data: data, encoding: String.Encoding.utf8) {
-                    print(loadedPerson)
-                }
-                self.showProfile(data: data)
-            }
-        }
-        task.resume()
+        })
     }
     
 

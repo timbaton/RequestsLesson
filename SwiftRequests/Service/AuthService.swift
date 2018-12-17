@@ -15,8 +15,9 @@ class AuthService {
     static let sharedInstance = AuthService()
     private let dataManager = DataManager.sharedInstance
     
-    public func saveToken(token: String){
+    public func saveUserSettings(token: String, id: String){
         dataManager.saveUserToken(with: token)
+        dataManager.saveUserId(with: id)
     }
     
     public func getUserToken() -> String? {

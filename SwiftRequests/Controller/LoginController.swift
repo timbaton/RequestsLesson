@@ -11,6 +11,7 @@ import WebKit
 
 class LoginController: UIViewController, WKNavigationDelegate {
     let key_token = "access_token"
+    let key_id = "user_id"
 //    let key_id = "user_id"
     let mainSegue = "mainSegue"
     var authService: AuthService!
@@ -42,7 +43,7 @@ class LoginController: UIViewController, WKNavigationDelegate {
                 for item in queryItems {
                     credentials[item.name] = item.value!
                 }
-                authService.saveToken(token: credentials[key_token]!)
+                authService.saveUserSettings(token: credentials[key_token]!, id: credentials[key_id]!)
                 performSegue(withIdentifier: mainSegue, sender: self)
             }
         }

@@ -35,10 +35,13 @@ class PostCell: UITableViewCell {
         tvReposts.text = String("\(post.reposts?.count ?? 0)")
         ivImage.setImageFromURl(ImageUrl: post.attachments?[0].photo?.sizes[0].url)
     }
+    
+    @IBAction func btnLike(_ sender: Any) {
+        
+    }
 }
 
 extension UIImageView{
-    
     func setImageFromURl(ImageUrl: String?){
         if ImageUrl != nil {
             if let url = NSURL(string: ImageUrl!) {
