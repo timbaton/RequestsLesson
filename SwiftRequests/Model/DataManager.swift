@@ -65,4 +65,14 @@ class DataManager: DataManagerProtocol {
     func savePosts(data: Data) {
         UserDefaults.standard.set(data, forKey: keyPosts)
     }
+    
+    func getPosts() -> [Post] {
+        let data = UserDefaults.standard.data(forKey: keyPosts)
+        
+        let decoder = JSONDecoder()
+        let loadedPosts = try! decoder.decode(PostModel.self, from: data!)
+        let posts = loadedPosts.response.items
+        print("\nПолучили посты с дб, где айди первого поста = \(loadedPosts.response.items[0].post_id)")
+        return posts
+    }
 }

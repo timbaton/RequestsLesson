@@ -12,9 +12,7 @@ import UIKit
 class HistoriesController: UIViewController, UITextViewDelegate, UITableViewDataSource {
     @IBOutlet weak var postsTable: UITableView!
     
-    var keyProfile = "key_profile"
     private var posts = [Post]()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +32,12 @@ class HistoriesController: UIViewController, UITextViewDelegate, UITableViewData
         return posts.count
     }
 
-    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        
-        // Configure the cell...
+        // Configure the cell
         let myCell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
         
         myCell.configureCell(post: posts[indexPath.row])
-        
 //            myCell.isHidden = true
-        
         return myCell
     }
     
@@ -52,7 +45,10 @@ class HistoriesController: UIViewController, UITextViewDelegate, UITableViewData
         let requestManager = RequestManager.sharedInstance as RequestManagerProtocol
         requestManager.downloadPosts(completionHandler: { (success) in
             if success{
-                print("success")
+                self.posts = DataManager.sharedInstance.getPosts()
+                DispatchQueue.main.async {
+                    self.postsTable.reloadData()
+                }
             }
         })
     }

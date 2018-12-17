@@ -9,8 +9,6 @@
 import UIKit
 
 class PostCell: UITableViewCell {
-
-
     @IBOutlet weak var tvText: UILabel!
     @IBOutlet weak var ivImage: UIImageView!
     @IBOutlet weak var tvLikes: UILabel!
