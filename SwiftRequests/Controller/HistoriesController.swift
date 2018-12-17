@@ -12,8 +12,6 @@ import UIKit
 class HistoriesController: UIViewController, UITextViewDelegate, UITableViewDataSource {
     @IBOutlet weak var postsTable: UITableView!
     
-    var apiService: ApiService!
-    var dataManager: DataManager!
     var keyProfile = "key_profile"
     private var posts = [Post]()
 
@@ -33,7 +31,6 @@ class HistoriesController: UIViewController, UITextViewDelegate, UITableViewData
     // MARK: - Table view data source
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return posts.count
     }
 
@@ -41,42 +38,23 @@ class HistoriesController: UIViewController, UITextViewDelegate, UITableViewData
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         
-            // Configure the cell...
+        // Configure the cell...
         let myCell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
-        if posts[indexPath.row].text != "nil"{
-            myCell.configureCell(post: posts[indexPath.row])
-        } else {
-            myCell.isHidden = true
-        }
+        
+        myCell.configureCell(post: posts[indexPath.row])
+        
+//            myCell.isHidden = true
+        
         return myCell
     }
     
     func downloadPosts() {
-        let profileURL = ApiService.sharedInstance.getPostsURL()
-        let urlRequest = URLRequest(url: profileURL, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            print("\(String(describing: response))")
-            if let error = error{
-                print("\(error)")
+        let requestManager = RequestManager.sharedInstance as RequestManagerProtocol
+        requestManager.downloadPosts(completionHandler: { (success) in
+            if success{
+                print("success")
             }
-            do{
-                if let data = data {
-                    if let loadedPostsString = String.init(data: data, encoding: String.Encoding.utf8) {
-                        print("posts = \(loadedPostsString)")
-                    }
-                    
-                    let decoder = JSONDecoder()
-                    let downloadPosts = try! decoder.decode(PostModel.self, from: data)
-                    self.posts = downloadPosts.response.items
-                    
-                     DispatchQueue.main.async {
-                        self.postsTable.reloadData()
-                    }
-                }
-            }
-        }
-        task.resume()
+        })
     }
     
     /*

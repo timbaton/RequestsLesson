@@ -8,33 +8,42 @@
 
 import Foundation
 
-//https://api.vk.com/method/newsfeed.get?token_access=e0f7032733ce3c3ef4de19173bf3d7a85ce00b44c32c92c3bcc8a658062ac677181c11e8c2e75b60d2e6f&v=5.92
-
 class ApiService {
     static let sharedInstance = ApiService()
     
+    //URL for getting token
     var login_url = URL(string: "https://oauth.vk.com/authorize?client_id=6770852&display=page&scope=wall,friends,docs&response_type=token&v=5.52")
     
+    //main constants
     private var baseURL = "https://api.vk.com/method/"
     private var apiVersion = "5.92"
     private var accessToken: String? = nil
     
+    //keys for methods
     private var profileMethod = "account.getProfileInfo"
     private var postsMethod = "newsfeed.get"
+    
+    //constants and keys for postMethod
     private var postsCount = "10"
     private var postsFilter = "post"
-    
     private var keyFilters = "filters"
+    
+    //main keys
     private var keyAccessToken = "access_token"
     private var keyVersion = "v"
     private var keyCount = "count"
     
-    public func getProfileURL() -> URL{
-        return getURL(method: profileMethod, count: nil, philter: nil)
+    /// Получить URLRequest для загрузги профиля пользователя
+    ///
+    /// - Returns: return 
+    public func getProfileURL() -> URLRequest{
+        let url =  getURL(method: profileMethod, count: nil, philter: nil)
+        return URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
     }
     
-    public func getPostsURL() -> URL{
-        return getURL(method: postsMethod, count: postsCount, philter: postsFilter)
+    public func getPostsURL() -> URLRequest{
+        let url = getURL(method: postsMethod, count: postsCount, philter: postsFilter)
+        return URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
     }
     
     private func getURL(method: String, count: String?, philter: String?) -> URL{
@@ -54,5 +63,4 @@ class ApiService {
         return URL
     }
     //api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V
-    //    METHOD_NAME&access_token=ACCESS_TOKEN
 }

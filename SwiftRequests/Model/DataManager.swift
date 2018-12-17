@@ -14,11 +14,21 @@ class DataManager: DataManagerProtocol {
     let keyToken = "token"
     let keyId = "id"
     let keyProfile = "key_profile"
+    let keyPosts = "key_posts"
     
     func saveUserToken(with token: String) {
         UserDefaults.standard.setValue(token, forKey: keyToken)
         UserDefaults.standard.synchronize()
         print("saved token = \(token)")
+    }
+    
+    func getUserToken() -> String? {
+        if let token = UserDefaults.standard.string(forKey: keyToken){
+            print("returned token \(token)")
+            return token
+        }
+        print("returned token nil")
+        return nil
     }
     
     func saveUserId(with id: String) {
@@ -36,29 +46,23 @@ class DataManager: DataManagerProtocol {
         return nil
     }
     
-    func getUserToken() -> String? {
-        if let token = UserDefaults.standard.string(forKey: keyToken){
-            print("returned token \(token)")
-            return token
-        }
-        print("returned token nil")
-        return nil
-    }
-    
     func saveUserProfile(data: Data) {
         UserDefaults.standard.set(data, forKey: keyProfile)
     }
     
     func getUserProfile() -> ProfileModel {
-        var data = UserDefaults.standard.data(forKey: keyProfile)
+        let data = UserDefaults.standard.data(forKey: keyProfile)
         
         var profile: ProfileModel? = nil
         let decoder = JSONDecoder()
         if let loadedPerson = try! decoder.decode(ProfileModel?.self, from: data!) {
-            print(loadedPerson.response.first_name)
+            print("\nПолучили пользователя с дб с именем = \(loadedPerson.response.first_name)")
             profile = loadedPerson
-            print("profile = \(profile)")
         }
         return profile!
+    }
+    
+    func savePosts(data: Data) {
+        UserDefaults.standard.set(data, forKey: keyPosts)
     }
 }

@@ -11,5 +11,7 @@ import Foundation
 typealias CompletionHandler = (_ success: Bool) -> Void
 
 protocol RequestManagerProtocol {    
-    func downloadFileFromURL(url: URLRequest, completionHandler: @escaping (Bool) -> Void)
+    func downloadUserProfile(completionHandler: @escaping (Bool) -> Void)
+    
+    func downloadPosts(completionHandler: @escaping (Bool) -> Void)
 }
