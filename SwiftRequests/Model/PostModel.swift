@@ -26,6 +26,7 @@ struct Post: Codable{
     var attachments: [Attachment]?
     var comments: Comments?
     var likes: Likes?
+    var reposts: Reposts?
 }
 
 struct Attachment: Codable {
@@ -50,6 +51,11 @@ struct Likes: Codable {
     var count: Int
     var user_likes: Int
     var can_like: Int
+}
+
+struct Reposts: Codable {
+    var count: Int
+    var user_reposted: Int
 }
 
 struct LikePostResponse: Codable {
