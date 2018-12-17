@@ -17,11 +17,13 @@ class ApiService {
     //main constants
     private var baseURL = "https://api.vk.com/method/"
     private var apiVersion = "5.92"
-    private var accessToken: String? = nil
+    
     
     //keys for methods
     private var profileMethod = "account.getProfileInfo"
     private var postsMethod = "newsfeed.get"
+    private var likeMethod = "likes.add"
+    private var deleteLikeMethod = "likes.delete"
     
     //constants and keys for postMethod
     private var postsCount = "10"
@@ -37,30 +39,39 @@ class ApiService {
     ///
     /// - Returns: return 
     public func getProfileURL() -> URLRequest{
-        let url =  getURL(method: profileMethod, count: nil, philter: nil)
-        return URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
+        var accessToken = AuthService.sharedInstance.getUserToken()
+        let queryItems = [NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
+        
+        return buildURLRequest(method: profileMethod, queryItems: queryItems)
     }
     
     public func getPostsURL() -> URLRequest{
-        let url = getURL(method: postsMethod, count: postsCount, philter: postsFilter)
-        return URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
+        var accessToken = AuthService.sharedInstance.getUserToken()
+        let queryItems = [NSURLQueryItem(name: keyFilters, value: postsFilter), NSURLQueryItem(name: keyCount, value: postsCount), NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
+        
+        return buildURLRequest(method: postsMethod, queryItems: queryItems)
     }
     
-    private func getURL(method: String, count: String?, philter: String?) -> URL{
-        accessToken = AuthService.sharedInstance.getUserToken()
-        var queryItems: [URLQueryItem]?
+    public func getLikeURL(itemId: String, sourceId: String) -> URLRequest{
+        var accessToken = AuthService.sharedInstance.getUserToken()
+        let queryItems = [NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: "type", value: "post"), NSURLQueryItem(name: "owner_id", value: sourceId), NSURLQueryItem(name: "item_id", value: itemId), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
         
-        if count != nil{
-            queryItems = [NSURLQueryItem(name: keyFilters, value: philter), NSURLQueryItem(name: keyCount, value: count), NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
-        } else{
-            queryItems = [NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
-        }
+        return buildURLRequest(method: likeMethod, queryItems: queryItems)
+    }
+    
+    public func getDeleteLikeURL(itemId: String, sourceId: String) -> URLRequest{
+        let accessToken = AuthService.sharedInstance.getUserToken()
+        let queryItems = [NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: "type", value: "post"), NSURLQueryItem(name: "owner_id", value: sourceId), NSURLQueryItem(name: "item_id", value: itemId), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
         
+        return buildURLRequest(method: deleteLikeMethod, queryItems: queryItems)
+    }
+    
+    private func buildURLRequest(method: String, queryItems: [URLQueryItem]?) -> URLRequest{
         let urlComps = NSURLComponents(string: baseURL + method)!
         urlComps.queryItems = queryItems
-        let URL = urlComps.url!
-        print("given url \(URL)")
-        return URL
+        let url = urlComps.url!
+        print("builded url for method \(method) : \(url)")
+        return URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
     }
     //api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V
 }

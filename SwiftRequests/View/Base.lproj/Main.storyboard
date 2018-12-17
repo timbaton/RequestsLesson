@@ -123,10 +123,10 @@
             </objects>
             <point key="canvasLocation" x="1636" y="497.29064039408871"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar-->
         <scene sceneID="N0U-M8-An0">
             <objects>
-                <tabBarController id="ej3-Je-h9C" sceneMemberID="viewController">
+                <tabBarController id="ej3-Je-h9C" customClass="MainTabBar" customModule="SwiftRequests" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KYu-JT-33p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -205,7 +205,9 @@
                                                         <constraint firstAttribute="width" constant="30" id="NTn-MU-HmO"/>
                                                         <constraint firstAttribute="height" constant="30" id="xiW-9b-Key"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="like"/>
+                                                    <state key="normal" title="Button" image="like">
+                                                        <color key="titleShadowColor" red="0.62327786009999997" green="0.62026685589999997" blue="0.62628886419999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="btnLike:" destination="7R4-Gw-yAl" eventType="touchUpInside" id="qZh-cQ-9IP"/>
                                                     </connections>
@@ -250,6 +252,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="btnLike" destination="sfD-gI-ddz" id="3Eq-FM-Yca"/>
                                             <outlet property="ivImage" destination="Zf3-eS-Rmy" id="ZLg-Hb-hPg"/>
                                             <outlet property="tvComments" destination="BZ9-1a-srU" id="dKj-wF-DYK"/>
                                             <outlet property="tvLikes" destination="QPB-g7-NLj" id="qXM-h7-TiP"/>
@@ -280,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgv-Fe-SR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746.4000000000001" y="-185.46798029556652"/>
+            <point key="canvasLocation" x="1636" y="-177"/>
         </scene>
     </scenes>
     <resources>

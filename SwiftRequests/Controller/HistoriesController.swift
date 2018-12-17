@@ -9,7 +9,7 @@
 import UIKit
 
 
-class HistoriesController: UIViewController, UITextViewDelegate, UITableViewDataSource {
+class HistoriesController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var postsTable: UITableView!
     
     private var posts = [Post]()
@@ -33,12 +33,16 @@ class HistoriesController: UIViewController, UITextViewDelegate, UITableViewData
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         // Configure the cell
         let myCell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
-        
         myCell.configureCell(post: posts[indexPath.row])
 //            myCell.isHidden = true
         return myCell
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func downloadPosts() {

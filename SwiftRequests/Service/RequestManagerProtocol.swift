@@ -14,4 +14,8 @@ protocol RequestManagerProtocol {
     func downloadUserProfile(completionHandler: @escaping (Bool) -> Void)
     
     func downloadPosts(completionHandler: @escaping (Bool) -> Void)
+    
+    func likePost(itemId: String, sourceId: String)
+    
+    func dislikePost(itemId: String, sourceId: String)
 }

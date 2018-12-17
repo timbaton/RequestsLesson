@@ -1,19 +1,19 @@
 //
-//  MainScreenController.swift
+//  MainTabBar.swift
 //  SwiftRequests
 //
-//  Created by Тимур Бадретдинов on 15/12/2018.
+//  Created by Тимур Бадретдинов on 17/12/2018.
 //  Copyright © 2018 Ильдар Залялов. All rights reserved.
 //
 
 import UIKit
 
-class MainScreenController: UITabBarController {
+class MainTabBar: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.hidesBackButton = true
+        
+        self.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view.
     }
 

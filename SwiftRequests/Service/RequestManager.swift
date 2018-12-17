@@ -50,5 +50,30 @@ class RequestManager: RequestManagerProtocol {
         }
         task.resume()
     }
-
+    
+    func likePost(itemId: String, sourceId: String) {
+        let likeURL = ApiService.sharedInstance.getLikeURL(itemId: itemId, sourceId: sourceId)
+        let task = URLSession.shared.dataTask(with: likeURL) { (data, response, error) in
+            print("\(String(describing: response))")
+            if let data = data {
+                if let likedCount = String.init(data: data, encoding: String.Encoding.utf8) {
+                    print("\nОтправили лайк: \(likedCount)")
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func dislikePost(itemId: String, sourceId: String) {
+        let likeURL = ApiService.sharedInstance.getDeleteLikeURL(itemId: itemId, sourceId: sourceId)
+        let task = URLSession.shared.dataTask(with: likeURL) { (data, response, error) in
+            print("\(String(describing: response))")
+            if let data = data {
+                if let likedCount = String.init(data: data, encoding: String.Encoding.utf8) {
+                    print("\nУбрали лайк: \(likedCount)")
+                }
+            }
+        }
+        task.resume()
+    }
 }

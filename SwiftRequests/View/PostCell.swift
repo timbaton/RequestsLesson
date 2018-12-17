@@ -14,6 +14,11 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var tvLikes: UILabel!
     @IBOutlet weak var tvComments: UILabel!
     @IBOutlet weak var tvReposts: UILabel!
+    @IBOutlet weak var btnLike: UIButton!
+    
+    var postId: Int!
+    var sourceId: Int!
+    var isLiked: Int!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +32,12 @@ class PostCell: UITableViewCell {
     }
     
     func configureCell(post: Post) {
+        postId = post.post_id
+        sourceId = post.source_id
+        isLiked = post.likes?.user_likes
+        if isLiked == 1{
+            btnLike.setImage(#imageLiteral(resourceName: "like_active"), for: .normal)
+        }
         tvText.text = post.text
         tvLikes.text = String("\(post.likes?.count ?? 0)")
         tvComments.text = String("\(post.comments?.count ?? 0)")
@@ -35,18 +46,23 @@ class PostCell: UITableViewCell {
     }
     
     @IBAction func btnLike(_ sender: Any) {
-        
-    }
-}
-
-extension UIImageView{
-    func setImageFromURl(ImageUrl: String?){
-        if ImageUrl != nil {
-            if let url = NSURL(string: ImageUrl!) {
-                if let imagedata = NSData(contentsOf: url as URL) {
-                    self.image = UIImage(data: imagedata as Data)
-                }
-            }
+        if isLiked == 0 {
+            isLiked = 1
+            tvLikes.text = String(Int(tvLikes.text!)! + 1)
+            btnLike.setImage(#imageLiteral(resourceName: "like_active"), for: .normal)
+            
+            let requestManager = RequestManager.sharedInstance as RequestManagerProtocol
+            requestManager.likePost(itemId: String(postId), sourceId: String(sourceId))
+            
+        } else {
+            isLiked = 0
+            tvLikes.text = String(Int(tvLikes.text!)! - 1)
+            btnLike.setImage(#imageLiteral(resourceName: "like"), for: .normal)
+            
+            let requestManager = RequestManager.sharedInstance as RequestManagerProtocol
+            requestManager.dislikePost(itemId: String(postId), sourceId: String(sourceId))
         }
+        print("button with \(postId) id clicked")
+        print("is like = \(isLiked)")
     }
 }

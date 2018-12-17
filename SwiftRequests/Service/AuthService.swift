@@ -26,4 +26,11 @@ class AuthService {
         }
         return nil
     }
+    
+    public func getUserId() -> String?{
+        if let id = dataManager.getUserid(){
+            return id
+        }
+        return nil
+    }
 }
