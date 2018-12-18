@@ -18,4 +18,6 @@ protocol RequestManagerProtocol {
     func likePost(itemId: String, sourceId: String)
     
     func dislikePost(itemId: String, sourceId: String)
+    
+    func postNewPost(message: String, completionHandler: @escaping (Bool) -> Void)
 }

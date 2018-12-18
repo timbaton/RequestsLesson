@@ -13,8 +13,27 @@ class RequestManager: RequestManagerProtocol {
     
     public static var sharedInstance = RequestManager()
     
+    func postNewPost(message: String, completionHandler: @escaping (Bool) -> Void) {
+        let profileURL = ApiService.sharedInstance.getNewPostURL(message: message)
+        
+        let task = URLSession.shared.dataTask(with: profileURL) { data, response, error in
+            print("\(String(describing: response))")
+            if let error = error{
+                print("\(error)")
+            }
+            if let data = data {
+//                DataManager.sharedInstance.savePosts(data: data)
+                if let newPostResponse = String.init(data: data, encoding: String.Encoding.utf8) {
+                    print("\nотправили пост: \(newPostResponse)")
+                }
+            }
+            completionHandler(true)
+        }
+        task.resume()
+    }
+    
     func downloadPosts(completionHandler: @escaping (Bool) -> Void) {
-        let profileURL = ApiService.sharedInstance.getPostsURL()
+        let profileURL = ApiService.sharedInstance.getGetPostsURL()
         
         let task = URLSession.shared.dataTask(with: profileURL) { data, response, error in
             print("\(String(describing: response))")

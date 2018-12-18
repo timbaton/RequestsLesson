@@ -46,12 +46,13 @@ class PostCell: UITableViewCell {
     }
     
     @IBAction func btnLike(_ sender: Any) {
+        let requestManager = RequestManager.sharedInstance as RequestManagerProtocol
+        
         if isLiked == 0 {
             isLiked = 1
             tvLikes.text = String(Int(tvLikes.text!)! + 1)
             btnLike.setImage(#imageLiteral(resourceName: "like_active"), for: .normal)
             
-            let requestManager = RequestManager.sharedInstance as RequestManagerProtocol
             requestManager.likePost(itemId: String(postId), sourceId: String(sourceId))
             
         } else {
@@ -59,7 +60,6 @@ class PostCell: UITableViewCell {
             tvLikes.text = String(Int(tvLikes.text!)! - 1)
             btnLike.setImage(#imageLiteral(resourceName: "like"), for: .normal)
             
-            let requestManager = RequestManager.sharedInstance as RequestManagerProtocol
             requestManager.dislikePost(itemId: String(postId), sourceId: String(sourceId))
         }
         print("button with \(postId) id clicked")

@@ -24,6 +24,7 @@ class ApiService {
     private var postsMethod = "newsfeed.get"
     private var likeMethod = "likes.add"
     private var deleteLikeMethod = "likes.delete"
+    private var newPostMethod = "wall.post"
     
     //constants and keys for postMethod
     private var postsCount = "10"
@@ -45,15 +46,22 @@ class ApiService {
         return buildURLRequest(method: profileMethod, queryItems: queryItems)
     }
     
-    public func getPostsURL() -> URLRequest{
-        var accessToken = AuthService.sharedInstance.getUserToken()
+    public func getGetPostsURL() -> URLRequest{
+        let accessToken = AuthService.sharedInstance.getUserToken()
         let queryItems = [NSURLQueryItem(name: keyFilters, value: postsFilter), NSURLQueryItem(name: keyCount, value: postsCount), NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
         
         return buildURLRequest(method: postsMethod, queryItems: queryItems)
     }
     
+    public func getNewPostURL(message: String) -> URLRequest{
+        let accessToken = AuthService.sharedInstance.getUserToken()
+        let queryItems = [NSURLQueryItem(name: "owner_id", value: AuthService.sharedInstance.getUserId()), NSURLQueryItem(name: "message", value: message), NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
+        
+        return buildURLRequest(method: newPostMethod, queryItems: queryItems)
+    }
+    
     public func getLikeURL(itemId: String, sourceId: String) -> URLRequest{
-        var accessToken = AuthService.sharedInstance.getUserToken()
+        let accessToken = AuthService.sharedInstance.getUserToken()
         let queryItems = [NSURLQueryItem(name: keyAccessToken, value: accessToken), NSURLQueryItem(name: "type", value: "post"), NSURLQueryItem(name: "owner_id", value: sourceId), NSURLQueryItem(name: "item_id", value: itemId), NSURLQueryItem(name: keyVersion, value: apiVersion)] as [URLQueryItem]
         
         return buildURLRequest(method: likeMethod, queryItems: queryItems)
